@@ -14,7 +14,6 @@ function ready () {
         event.preventDefault(); // prevents the form from contacting our server automatically (we want to do it ourselves)
         var formActionUrl = form.action; // 'form.action' is the url '/create-post'
         var formData = new FormData(form);
-
         postBlogposts(formActionUrl, formData);
     });
 }
@@ -28,6 +27,7 @@ function postBlogposts (url, data) {
         body: data
     })
     .then(function (res) {
+        console.log(res);
         res.json()
             .then(function (json) {
                 console.log(json);
@@ -57,6 +57,7 @@ function getBlogposts (url) {
 }
 
 function addBlogpostsToPage (data) {
+    console.log(data);
     for (var blogpost in data) {
         if (data.hasOwnProperty(blogpost)) {
 

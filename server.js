@@ -19,7 +19,15 @@ app.post('/create-post', function (req, res) {
 
 	var postsToSave = JSON.stringify(posts);
 
-	fs.writeFile(postsFile, postsToSave);
+	fs.writeFile(postsFile, postsToSave, function() {
+		res.sendFile(postsFile, function(err) {
+			if (err) {
+	    	console.log(err);
+	    } else {
+	    	console.log('Sent:', postsFile);
+	    }		
+		});
+	});
 });
 
 app.get('/get-posts', function(req, res) {
